@@ -1,0 +1,16 @@
+{
+  "name": "http-cache",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "crypto": "^1.0.1",
+    "koa": "^2.13.4"
+  }
+}
