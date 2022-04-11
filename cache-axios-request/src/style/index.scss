@@ -1,0 +1,10 @@
+body {
+    background-color: lightblue;
+    color: $testColor;
+    background-image: url(../assets/images/bg-img.jpg);
+}
+
+h3 {
+    transform: rotate(90deg);
+    background-color: aquamarine;
+}
