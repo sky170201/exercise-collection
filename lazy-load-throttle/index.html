@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            width: 600px;
+            margin: auto;
+        }
+        .img {
+            width: 300px;
+            border: 1px solid aquamarine;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px;
+        }
+        .pic {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+      <div class="img">
+        <img class="pic" alt="加载中" data-src="./svg/bug.svg">
+      </div>
+      <div class="img">
+        <img class="pic" alt="加载中" data-src="./svg/bug.svg">
+      </div>
+      <div class="img">
+        <img class="pic" alt="加载中" data-src="./svg/chart.svg">
+      </div>
+      <div class="img">
+        <img class="pic" alt="加载中" data-src="./svg/disk.svg">
+      </div>
+      <div class="img">
+        <img class="pic" alt="加载中" data-src="./svg/documentation.svg">
+      </div>
+      <div class="img">
+        <img class="pic" alt="加载中" data-src="./svg/bug.svg">
+      </div>
+      <div class="img">
+        <img class="pic" alt="加载中" data-src="./svg/excel.svg">
+      </div>
+      <div class="img">
+        <img class="pic" alt="加载中" data-src="./svg/idc.svg">
+      </div>
+      <div class="img">
+        <img class="pic" alt="加载中" data-src="./svg/link.svg">
+      </div>
+      <div class="img">
+        <img class="pic" alt="加载中" data-src="./svg/money.svg">
+      </div>
+      <div class="img">
+        <img class="pic" alt="加载中" data-src="./svg/bug.svg">
+      </div>
+      <div class="img">
+        <img class="pic" alt="加载中" data-src="./svg/bug.svg">
+      </div>
+      <div class="img">
+        <img class="pic" alt="加载中" data-src="./svg/chart.svg">
+      </div>
+      <div class="img">
+        <img class="pic" alt="加载中" data-src="./svg/disk.svg">
+      </div>
+      <div class="img">
+        <img class="pic" alt="加载中" data-src="./svg/documentation.svg">
+      </div>
+      <div class="img">
+        <img class="pic" alt="加载中" data-src="./svg/bug.svg">
+      </div>
+      <div class="img">
+        <img class="pic" alt="加载中" data-src="./svg/excel.svg">
+      </div>
+      <div class="img">
+        <img class="pic" alt="加载中" data-src="./svg/idc.svg">
+      </div>
+      <div class="img">
+        <img class="pic" alt="加载中" data-src="./svg/link.svg">
+      </div>
+      <div class="img">
+        <img class="pic" alt="加载中" data-src="./svg/money.svg">
+      </div>
+    </div>
+    <script>
+        // 获取所有的图片标签
+        let imgs = document.getElementsByClassName('pic')
+        // 获取可视区域的高度
+        const viewHeight = window.innerHeight || document.documentElement.clientHeight
+        // num用于统计当前显示到了哪一张图片，避免每次都从第一张图片开始检查是否露出
+        let num = 0
+        function lazyLoad() {
+            for (let i = num; i < imgs.length; i++) {
+                let distance = viewHeight - imgs[i].getBoundingClientRect().top
+                // 如果可视区域高度大于等于元素顶部距离可视区域顶部的高度，说明元素露出
+                if (distance >= 0) {
+                    setTimeout(() => {
+                        // 给元素写入真实的src，展示图片
+                        imgs[i].src = imgs[i].getAttribute('data-src')
+                        // 前i张图片已经加载完毕，下次从第i+1张开始检查是否露出
+                        num = i + 1
+                    }, 300)
+                }
+            }
+        }
+        // 上来先执行一次
+        lazyLoad()
+
+        // 节流，最后一次才执行
+        function throttle (fn, delay) {
+            let timer = null
+            return () => {
+                if (timer) clearTimeout(timer)
+                timer = setTimeout(() => {
+                    fn()
+                }, delay)
+            }
+        }
+
+        let throttleLazyLoad = throttle(lazyLoad, 1000)
+        // 监听scroll事件
+        window.addEventListener('scroll', throttleLazyLoad, false)
+    </script>
+</body>
+</html>
