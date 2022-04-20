@@ -109,8 +109,21 @@
         // 上来先执行一次
         lazyLoad()
 
-        // 节流，最后一次才执行
-        function throttle (fn, delay) {
+        // 节流，只有等第一次结束后才会执行下一次操作
+        function throttle(fn, delay) {
+            let timer = null
+            return () => {
+                if (!timer) {
+                    timer = setTimeout(() => {
+                        fn()
+                        timer = null
+                    }, delay)
+                }
+            }
+        }
+
+        // 防抖，只有最后一次才执行
+        function debounce (fn, delay) {
             let timer = null
             return () => {
                 if (timer) clearTimeout(timer)
@@ -120,9 +133,9 @@
             }
         }
 
-        let throttleLazyLoad = throttle(lazyLoad, 1000)
+        let debounceLazyLoad = debounce(lazyLoad, 1000)
         // 监听scroll事件
-        window.addEventListener('scroll', throttleLazyLoad, false)
+        window.addEventListener('scroll', debounceLazyLoad, false)
     </script>
 </body>
 </html>
