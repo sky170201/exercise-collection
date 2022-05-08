@@ -8,3 +8,4 @@ import "./insertionSort.js"; // 插入排序
 // 排序小型数组时，此算法比选择排序和冒泡排序性能要好
 
 import "./mergeSort.js"; // 归并排序
+import "./quickSort.js"; // 快排

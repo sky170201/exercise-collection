@@ -20,5 +20,5 @@ function selectionSort(arr) {
 
 console.log(selectionSort(arr));
 
-// 总结：每次迭代找出从j开始的最小值，然后跟i的位置替换，即选择排序
+// 总结：每次迭代找出从j开始的最小值，然后跟i的位置替换，即插入排序
 // 复杂度同样是O(n²)，需要嵌套两个循环

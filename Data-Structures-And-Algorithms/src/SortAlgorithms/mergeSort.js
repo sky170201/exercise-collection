@@ -1,5 +1,4 @@
 function mergeSort(arr) {
-    debugger;
     if (arr.length > 1) {
         const { length } = arr;
         const middle = Math.floor(length / 2);

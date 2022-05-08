@@ -7,6 +7,126 @@
         <title>Document</title>
     </head>
     <body>
+        <script>
+            let arr = [2, 3, 8, 4, 1];
+
+            function swap(arr, i, j) {
+                let temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
+        </script>
+        <script>
+            // 快排
+            function quickSort(arr) {
+                const len = arr.length;
+                if (len <= 1) return arr;
+                let pivotIndex = Math.floor(len / 2);
+                let pivot = arr.splice(pivotIndex, 1)[0];
+                let left = [];
+                let right = [];
+
+                for (let i = 0; i < arr.length; i++) {
+                    let elem = arr[i];
+                    if (elem < pivot) {
+                        left.push(elem);
+                    } else if (elem > pivot) {
+                        right.push(elem);
+                    }
+                }
+                return quickSort(left).concat(pivot, quickSort(right));
+            }
+
+            console.log(quickSort(arr));
+        </script>
+        <script>
+            // 最长公共子序列
+            function lcs(a, b) {
+                let n = a.length;
+                let m = b.length;
+                let list = [];
+                for (let i = 0; i <= n; i++) {
+                    list[i] = [];
+                    for (let j = 0; j <= m; j++) {
+                        list[i][j] = 0;
+                    }
+                }
+                for (let i = 0; i <= n; i++) {
+                    for (let j = 0; j <= m; j++) {
+                        if (i === 0 || j === 0) {
+                            list[i][j] = 0;
+                        } else if (a[i - 1] === b[j - 1]) {
+                            list[i][j] = list[i - 1][j - 1] + 1;
+                        } else {
+                            const x = list[i - 1][j];
+                            const y = list[i][j - 1];
+                            list[i][j] = x > y ? x : y;
+                        }
+                    }
+                }
+                console.log(list);
+                return list[n][m];
+            }
+            console.log(lcs("acbaed", "abcadf"));
+        </script>
+        <script>
+            // 插入排序如果前一个比后一个大，则替换，继续依次往前比对
+            function insertSort(arr) {
+                let { length } = arr;
+                for (let i = 1; i < length; i++) {
+                    let j = i;
+                    let temp = arr[i]; // 记录下基础值
+                    while (j > 0 && arr[j - 1] > temp) {
+                        // 如果前一个值比后面一个值大，则替换
+                        arr[j] = arr[j - 1];
+                        j--;
+                    }
+                    arr[j] = temp;
+                }
+                return arr;
+            }
+            console.log(insertSort(arr));
+        </script>
+        <script>
+            // 选择排序是依次比对出最小值的索引，然后替换移动到最前面，所以有j = i的优化，已排序好的最小值不需要再遍历
+            function selectionSort(arr) {
+                let { length } = arr;
+                let indexMin;
+                for (let i = 0; i < length - 1; i++) {
+                    indexMin = i;
+                    for (let j = i; j < length; j++) {
+                        let baseVal = arr[indexMin];
+                        let targetVal = arr[j];
+                        if (baseVal - targetVal > 0) {
+                            indexMin = j;
+                        }
+                    }
+                    if (i !== indexMin) {
+                        swap(arr, i, indexMin);
+                    }
+                }
+                return arr;
+            }
+
+            console.log(selectionSort(arr));
+        </script>
+        <script>
+            // 冒泡排序是依次将最大值移动到最后，所以有len = length - i - 1的优化，即已排好序的最大值不需要再遍历了
+            function sort(arr) {
+                let { length } = arr;
+                for (let i = 0; i < length; i++) {
+                    let len = length - 1 - i;
+                    for (let j = 0; j < len; j++) {
+                        if (arr[j] - arr[j + 1] > 0) {
+                            swap(arr, j, j + 1);
+                        }
+                    }
+                }
+                return arr;
+            }
+
+            console.log(sort(arr));
+        </script>
         <script type="module" src="./src/index.js"></script>
     </body>
 </html>
