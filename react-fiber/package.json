@@ -1,0 +1,16 @@
+{
+  "name": "react-fiber",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "babel index.js -d ./dist --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/preset-react": "^7.16.7",
+    "@babel/cli": "^7.17.6"
+  }
+}
