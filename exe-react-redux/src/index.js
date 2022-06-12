@@ -9,6 +9,8 @@ import ReactDOM from "react-dom/client";
 import Counter1 from "./components/Counter1";
 import Counter2 from "./components/Counter2";
 import Counter3 from "./components/Counter3";
+import Username1 from "./components/Username1";
+import Username2 from "./components/Username2";
 import store from "./store";
 import { Provider } from "./react-redux";
 
@@ -18,5 +20,7 @@ root.render(
         <Counter1 />
         <Counter2 />
         <Counter3 />
+        <Username1 />
+        <Username2 />
     </Provider>
 );
